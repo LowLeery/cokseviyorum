@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defne'nin Doğum Günü</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #1e1e1e;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      position: relative;
+      width: 100%;
+      margin: 0;
+    }
+
+    .message {
+      position: absolute;
+      font-size: 30px;
+      font-weight: bold;
+      color: #ff69b4;
+      animation: moveUp 3s infinite linear, fadeIn 1.5s infinite ease-in-out;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    @keyframes moveUp {
+      0% {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      100% {
+        top: -10%;
+        left: randomPosition();
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      font-size: 40px;
+      color: red;
+      position: absolute;
+      animation: heartMove 2.5s infinite linear;
+    }
+
+    @keyframes heartMove {
+      0% {
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      100% {
+        top: -10%;
+        left: randomPosition();
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .message {
+        font-size: 20px; /* Mobil ekranlarda yazı boyutunu küçült */
+      }
+
+      .heart {
+        font-size: 30px; /* Mobilde kalp boyutunu küçült */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .message {
+        font-size: 18px; /* Daha küçük ekranlarda yazı boyutunu daha da küçült */
+      }
+
+      .heart {
+        font-size: 25px; /* Daha küçük ekranlarda kalp boyutunu küçült */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const messages = [
+      'Seni Çok Seviyorum Defne', 
+      'Doğum Günün Kutlu Olsun Aşkım!', 
+      'Her zaman beraber!', 
+      'En güzel gün seninle olsun!', 
+      'Kalbim hep seninle!', 
+      'İyi ki doğdun Defne!',
+      'AŞKIM',
+      'BEBEĞİM',
+      'HAYATIM',
+      'HERŞEYİMMMMM',
+      'BİRTANEM',
+      'İyiki hayatıma girdin.'
+    ];
+
+    const hearts = ['❤️', '💖', '💘', '💝'];
+
+    // Function to create random messages and hearts
+    function createMessage() {
+      let message = document.createElement('div');
+      message.classList.add('message');
+      message.innerText = messages[Math.floor(Math.random() * messages.length)];
+      document.body.appendChild(message);
+
+      // Positioning message randomly horizontally
+      message.style.left = `${Math.random() * 100}%`;
+
+      setTimeout(() => {
+        message.remove();
+      }, 3000); // Removes the message after 3 seconds
+    }
+
+    function createHeart() {
+      let heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      document.body.appendChild(heart);
+
+      // Positioning heart randomly horizontally
+      heart.style.left = `${Math.random() * 100}%`;
+
+      setTimeout(() => {
+        heart.remove();
+      }, 2500); // Removes the heart after 2.5 seconds
+    }
+
+    // Create messages every 1 second
+    setInterval(createMessage, 1000);
+
+    // Create hearts every 1.5 seconds
+    setInterval(createHeart, 1500);
+  </script>
+</body>
+</html>
